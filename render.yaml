@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: solxtreme-dashboard
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_JUPITER_API_URL
+        value: https://quote-api.jup.ag/v6
+      - key: SOLANA_WALLET_KEY
+        value: 54FAw33CkTn7FPApnkGMw83Sn5ASA18QSwa2WimJTbysZrurzb8aPZMSBcrrEEPmKxdYPJrLX1iZoj1kTFJqtL1S

@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SolXtreme | Cross-chain Crypto Aggregator",
-  description: "Cross-chain crypto aggregator with voice orders, video meme tokens, and Pump.fun liquidity",
+  title: "SolXtreme Dashboard",
+  description: "Advanced Solana trading dashboard with real-time data",
     generator: 'v0.dev'
 }
 
@@ -18,7 +18,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
+      <head>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js" async></script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}

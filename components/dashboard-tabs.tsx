@@ -1,32 +1,34 @@
 "use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { VoiceAuth } from "@/components/voice-auth"
-import { VideoTokenCreator } from "@/components/video-token-creator"
-import { SwapInterface } from "@/components/swap-interface"
-import { MarketOverview } from "@/components/market-overview"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 export function DashboardTabs() {
+  const [activeTab, setActiveTab] = useState("overview")
+
+  const tabs = [
+    { id: "overview", label: "Overview" },
+    { id: "voice-orders", label: "Voice Orders" },
+    { id: "token-creator", label: "Token Creator" },
+    { id: "swap", label: "Swap" },
+  ]
+
   return (
-    <Tabs defaultValue="overview" className="space-y-4">
-      <TabsList className="grid w-full grid-cols-4">
-        <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="voice">Voice Orders</TabsTrigger>
-        <TabsTrigger value="tokens">Token Creator</TabsTrigger>
-        <TabsTrigger value="swap">Swap</TabsTrigger>
-      </TabsList>
-      <TabsContent value="overview" className="space-y-4">
-        <MarketOverview />
-      </TabsContent>
-      <TabsContent value="voice" className="space-y-4">
-        <VoiceAuth />
-      </TabsContent>
-      <TabsContent value="tokens" className="space-y-4">
-        <VideoTokenCreator />
-      </TabsContent>
-      <TabsContent value="swap" className="space-y-4">
-        <SwapInterface />
-      </TabsContent>
-    </Tabs>
+    <div className="border border-gray-800 rounded-lg overflow-hidden">
+      <div className="flex">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={cn(
+              "flex-1 py-3 px-4 text-center transition-colors",
+              activeTab === tab.id ? "bg-[#131722] text-white" : "bg-transparent text-gray-400 hover:text-white",
+            )}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+    </div>
   )
 }
