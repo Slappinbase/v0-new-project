@@ -1,13 +1,15 @@
-import { useState } from 'react';
+"use client"
+
+import { useState } from "react"
 
 export default function ChessGame() {
-  const [wager, setWager] = useState('');
-  const [timeControl, setTimeControl] = useState('5');
+  const [wager, setWager] = useState("")
+  const [timeControl, setTimeControl] = useState("5")
 
   return (
     <div className="bg-gray-800 rounded-xl p-6">
       <h2 className="text-xl font-semibold mb-6">Chess Arena</h2>
-      
+
       <div className="space-y-6">
         {/* Wager Input */}
         <div className="bg-gray-900 rounded-lg p-4">
@@ -24,7 +26,7 @@ export default function ChessGame() {
         {/* Time Control */}
         <div>
           <label className="block text-gray-400 mb-2">Time Control</label>
-          <select 
+          <select
             value={timeControl}
             onChange={(e) => setTimeControl(e.target.value)}
             className="w-full bg-gray-900 rounded-lg p-4"
@@ -45,5 +47,5 @@ export default function ChessGame() {
         </button>
       </div>
     </div>
-  );
+  )
 }

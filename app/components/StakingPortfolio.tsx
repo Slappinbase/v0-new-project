@@ -1,38 +1,38 @@
-import { useState, useEffect } from 'react';
-import { Connection, PublicKey } from '@solana/web3.js';
-import { ethers } from 'ethers';
+"use client"
+
+import { useState } from "react"
 
 export default function StakingPortfolio() {
-  const [stakingPool, setStakingPool] = useState('SOL');
-  const [amount, setAmount] = useState('');
-  const [duration, setDuration] = useState(30);
-  const [apy, setApy] = useState(0);
-  const [tvl, setTvl] = useState(0);
+  const [stakingPool, setStakingPool] = useState("SOL")
+  const [amount, setAmount] = useState("")
+  const [duration, setDuration] = useState(30)
+  const [apy, setApy] = useState(0)
+  const [tvl, setTvl] = useState(0)
 
   const calculateRewards = (amount: string, days: number) => {
-    const principal = parseFloat(amount) || 0;
-    const yearlyRate = apy / 100;
-    const dailyRate = yearlyRate / 365;
-    const rewards = principal * dailyRate * days;
-    return rewards.toFixed(4);
-  };
+    const principal = Number.parseFloat(amount) || 0
+    const yearlyRate = apy / 100
+    const dailyRate = yearlyRate / 365
+    const rewards = principal * dailyRate * days
+    return rewards.toFixed(4)
+  }
 
   return (
     <div className="bg-gray-800 rounded-xl p-6">
       <h2 className="text-xl font-semibold mb-6">Staking Portfolio</h2>
-      
+
       <div className="space-y-6">
         {/* Pool Selection */}
         <div className="flex space-x-4">
-          <button 
-            className={`px-4 py-2 rounded-lg ${stakingPool === 'SOL' ? 'bg-blue-600' : 'bg-gray-700'}`}
-            onClick={() => setStakingPool('SOL')}
+          <button
+            className={`px-4 py-2 rounded-lg ${stakingPool === "SOL" ? "bg-blue-600" : "bg-gray-700"}`}
+            onClick={() => setStakingPool("SOL")}
           >
             Stake SOL
           </button>
-          <button 
-            className={`px-4 py-2 rounded-lg ${stakingPool === 'ETH' ? 'bg-blue-600' : 'bg-gray-700'}`}
-            onClick={() => setStakingPool('ETH')}
+          <button
+            className={`px-4 py-2 rounded-lg ${stakingPool === "ETH" ? "bg-blue-600" : "bg-gray-700"}`}
+            onClick={() => setStakingPool("ETH")}
           >
             Stake ETH
           </button>
@@ -53,7 +53,7 @@ export default function StakingPortfolio() {
         {/* Duration Selector */}
         <div>
           <label className="block text-gray-400 mb-2">Staking Duration</label>
-          <select 
+          <select
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
             className="w-full bg-gray-900 rounded-lg p-4"
@@ -67,7 +67,9 @@ export default function StakingPortfolio() {
         {/* Rewards Preview */}
         <div className="bg-gray-900 rounded-lg p-4">
           <h3 className="text-gray-400 mb-2">Estimated Rewards</h3>
-          <div className="text-2xl">{calculateRewards(amount, duration)} {stakingPool}</div>
+          <div className="text-2xl">
+            {calculateRewards(amount, duration)} {stakingPool}
+          </div>
         </div>
 
         {/* Stake Button */}
@@ -76,5 +78,5 @@ export default function StakingPortfolio() {
         </button>
       </div>
     </div>
-  );
+  )
 }

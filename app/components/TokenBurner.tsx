@@ -1,17 +1,19 @@
-import { useState } from 'react';
+"use client"
+
+import { useState } from "react"
 
 export default function TokenBurner() {
-  const [amount, setAmount] = useState('');
-  const [tokenAddress, setTokenAddress] = useState('');
+  const [amount, setAmount] = useState("")
+  const [tokenAddress, setTokenAddress] = useState("")
   const [burnHistory, setBurnHistory] = useState([
-    { token: 'SOL', amount: '1000', date: '2023-11-01' },
-    { token: 'ETH', amount: '50', date: '2023-11-02' }
-  ]);
+    { token: "SOL", amount: "1000", date: "2023-11-01" },
+    { token: "ETH", amount: "50", date: "2023-11-02" },
+  ])
 
   return (
     <div className="bg-gray-800 rounded-xl p-6">
       <h2 className="text-xl font-semibold mb-6">Token Burner</h2>
-      
+
       <div className="space-y-6">
         {/* Token Input */}
         <div className="bg-gray-900 rounded-lg p-4">
@@ -49,7 +51,9 @@ export default function TokenBurner() {
             {burnHistory.map((burn, index) => (
               <div key={index} className="bg-gray-900 rounded-lg p-4 flex justify-between items-center">
                 <div>
-                  <span className="text-gray-400">Burned {burn.amount} {burn.token}</span>
+                  <span className="text-gray-400">
+                    Burned {burn.amount} {burn.token}
+                  </span>
                 </div>
                 <span className="text-gray-500 text-sm">{burn.date}</span>
               </div>
@@ -58,5 +62,5 @@ export default function TokenBurner() {
         </div>
       </div>
     </div>
-  );
+  )
 }
